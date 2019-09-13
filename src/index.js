@@ -23,12 +23,8 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
 
 setTimeout(() => {
   console.log(allData.users);
-  console.log(allData.rooms);
+  console.log(allData.rooms[1]);
   console.log(allData.bookings);
   console.log(allData.roomServices);
 }, 1000);
 
-//assign variables to fetch
-//all data is an object of keys whos values are arrays
-//promise.all takes all the fetch variables and then all data gets assigned
-// to each fetched data thing that comes back.
