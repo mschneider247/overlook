@@ -1,6 +1,10 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$color1: hsla(224%, 40%, 22%, 1);
+$color2: hsla(190%, 100%, 28%, 1);
+$color3: hsla(166%, 39%, 43%, 1);
+$color4: hsla(131%, 26%, 79%, 1);
+$color5: hsla(50%, 69%, 72%, 1);
 
 body {
-  background-color: $primary-background;
+  background-color: $color1;
 }
