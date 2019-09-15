@@ -1,9 +1,9 @@
 class Customer {
-  constructor(id, name, room, orders) {
-    this.id = id;
-    this.name = name;
-    this.room = room;
-    this.orders = orders;
+  constructor(user) {
+    this.id = user.id;
+    this.name = user.name;
+    this.room = user.room;
+    this.orders = user.orders;
   }
 
   bookRoom(room) {
