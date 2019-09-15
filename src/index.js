@@ -15,6 +15,7 @@ const roomServicesFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1
 const allData = { users: [], rooms: [], bookings: [], roomServices: []};
 
 const allCustomers = [];
+let currentCustomer;
 
 Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(data => {
   allData.users = data[0].users;
@@ -44,3 +45,17 @@ $('.tabs-nav a').on('click', function (event) {
   $('.tabs-stage div').hide();
   $($(this).attr('href')).show();
 });
+
+$('#search-customers-btn').on('click', function() {
+  // console.log("BUTTON CLICKED!")
+  // console.log($('#search-customers').val());
+  let input = ($('#search-customers').val()).toLowerCase();
+  let foundCustomer = allCustomers.find(customer => {
+    return (customer.name).toLowerCase().includes(input);
+  });
+  // console.log(foundCustomer);
+  currentCustomer = foundCustomer;
+  // console.log("Current customer set to===", currentCustomer)
+  $('#search-customers-btn').after(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
+
+})
