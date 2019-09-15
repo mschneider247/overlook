@@ -76,7 +76,8 @@ a:hover {
 }
 
 .tabs-stage {
-  display: block;
+  display: flex;
+  flex-direction: row;
   border: 3px solid $color4;
   border-radius: 0 0 6px 6px;
   border-top: 0;
@@ -85,4 +86,8 @@ a:hover {
   position: relative;
   top: -1px;
   background: #fff;
+}
+
+#customer__section--current-info {
+  display: block;
 }
