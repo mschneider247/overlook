@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import './css/base.scss';
 import Customer from './Customer';
+import domUpdates from "./domUpdates";
 
 const usersFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users")
   .then(data => data.json());
@@ -24,7 +25,6 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
 });
 
 setTimeout(() => {
-  console.log(allData.users);
   allData.users.forEach(user => {
     let newCustomer = new Customer(user);
     allCustomers.push(newCustomer);
@@ -35,12 +35,8 @@ setTimeout(() => {
   console.log(allData.roomServices);
 }, 1000);
 
-// Show the first tab by default
-$('.tabs-stage div').hide();
-$('.tabs-stage div:first').show();
-$('.tabs-nav li:first').addClass('tab-active');
+domUpdates.initiateTabs();
 
-// Change tab class and display content
 $('.tabs-nav a').on('click', function (event) {
   event.preventDefault();
   $('.tabs-nav li').removeClass('tab-active');
