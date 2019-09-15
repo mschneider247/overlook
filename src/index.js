@@ -47,15 +47,21 @@ $('.tabs-nav a').on('click', function (event) {
 });
 
 $('#search-customers-btn').on('click', function() {
+  $('#customer__section--current-info').html(``);
   // console.log("BUTTON CLICKED!")
   // console.log($('#search-customers').val());
   let input = ($('#search-customers').val()).toLowerCase();
   let foundCustomer = allCustomers.find(customer => {
     return (customer.name).toLowerCase().includes(input);
   });
-  // console.log(foundCustomer);
-  currentCustomer = foundCustomer;
-  // console.log("Current customer set to===", currentCustomer)
-  $('#search-customers-btn').after(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
+  if (foundCustomer !== undefined) {
+    // console.log(foundCustomer);
+    currentCustomer = foundCustomer;
+    // console.log("Current customer set to===", currentCustomer)
+    $('#customer__section--current-info').prepend(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
+  } else {
+    $('#customer__section--current-info').prepend(`<p>Error, Did not find customer.</p>`);
+  }
+  
 
 })
