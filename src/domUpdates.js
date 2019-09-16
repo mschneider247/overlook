@@ -6,9 +6,28 @@ export default {
     $('.tabs-stage div:first').show();
     $('.tabs-nav li:first').addClass('tab-active');
     $('.customer__section--info').hide();
+    $('#customer__ask-to-select').hide();
+    $('#customer__no-customer').hide();
+  },
+
+  tabNavigation(that) {
+    $('.tabs-nav li').removeClass('tab-active');
+    $(that).parent().addClass('tab-active');
+    $('.tabs-stage div').hide();
+    $($(that).attr('href')).show();
+  },
+
+  showCustomerSelectBtn() {
+    $('#customer__ask-to-select').show();
+    $('#search-customers-btn').hide();
+  },
+
+  showCustomerSearchBtn() {
+    $('#search-customers-btn').show();
   },
 
   appendCustomerInfo(foundCustomer) {
+    $('#customer__ask-to-select').hide();
     $('.customer__section--info').show();
     $('#search-customers').val('');
     $('#customer__new-name-input').val('');
@@ -16,12 +35,22 @@ export default {
   },
 
   appendNoCustomerFound() {
-    console.log('is inside domupdates firing??');
     $('#customer__no-customer').show();
     $('.customer__section--info').hide();
-    $('#customer__no-customer').prepend(`<p style="color: #ff7b29">Error, Did not find customer. Please search again or add new customer below!</p>`);
+    $('#customer__no-customer').show();
     $('#customer__new-name').text($('#search-customers').val());
-    // $('#customer__add-customer').show();
-  }
+  },
 
+  clearCustomerNameInput() {
+    $('.customer__section--info').html(``);
+    $('#customer__no-customer').hide();
+  },
+
+  grabNewCustomerName() {
+    return $('#customer__new-name-input').val();
+  },
+
+  clearNoCustomerError() {
+    $('#customer__no-customer').hide();
+  }
 }
