@@ -18,10 +18,14 @@
       </ul>
       <container class="tabs-stage">
         <div id="main">
-          <p>MAIN TAB</p>
+          <p>Today's Date</p>
+          <p>Total rooms available today</p>
+          <p>Today's total revenue</p>
+          <p>% of rooms available today</p>
         </div>
         <div id="orders">
-          <p>ORDERS TAB</p>
+          <p>Display all Orders</p>
+          <p>Search orders by date</p>
         </div>
         <div id="rooms">
           <p>ROOMS TAB</p>
@@ -29,9 +33,9 @@
         <div id="customer">
           <container>
             <section>
-              <p>Search for Customer:</p>
+              <p>Search for a Customer:</p>
               <input type="text" id="search-customers"
-              placeholder=" Enter Name Here">
+              placeholder=" Enter Customer Name ">
               <button id="search-customers-btn">
                 Search Customers
               </button>
@@ -39,8 +43,9 @@
             <section id="customer__no-customer">
             </section>
             <section id="customer__add-customer">
-              <p>Add a New Customer?</p>
-              <p id="customer__new-name"></p>
+              <p>Add a New Customer:</p>
+              <p></p>
+              <input type="text" id="customer__new-name-input" placeholder=" Enter New Customer ">
               <button id="customer__add-btn">
                 Add New Customer
               </button>
@@ -49,7 +54,5 @@
         </div>
       </container>
     </container>
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>
