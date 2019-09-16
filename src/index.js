@@ -60,7 +60,7 @@ $('#search-customers-btn').on('click', function() {
     // console.log("Current customer set to===", currentCustomer)
     $('#customer__section--current-info').prepend(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
   } else {
-    $('#customer__section--current-info').prepend(`<p>Error, Did not find customer.</p>`);
+    $('#customer__section--current-info').prepend(`<p style="color: #ff7b29">Error, Did not find customer. Please search again or add new customer below!</p>`);
   }
   
 
