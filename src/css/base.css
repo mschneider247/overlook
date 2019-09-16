@@ -2,6 +2,11 @@
 body {
   background-color: #222e4f; }
 
+header {
+  display: flex;
+  flex-direction: row;
+  height: 120px; }
+
 body {
   color: #e9d886;
   font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif; }
@@ -59,3 +64,11 @@ a:hover {
 
 #customer__section--current-info {
   display: block; }
+
+.customer__section--info {
+  text-align: center;
+  border: 2px solid #00778f;
+  margin: 1% 1% 1% auto;
+  padding: 1%;
+  font-weight: 800;
+  border-radius: 6px; }
