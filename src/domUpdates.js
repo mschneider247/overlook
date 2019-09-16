@@ -11,6 +11,7 @@ export default {
   appendCustomerInfo(foundCustomer) {
     $('.customer__section--info').show();
     $('#search-customers').val('');
+    $('#customer__new-name-input').val('');
     $('.customer__section--info').prepend(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
   },
 

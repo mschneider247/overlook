@@ -75,6 +75,9 @@ $('#customer__add-btn').on('click', function () {
     currentCustomer = newCustomer;
     $('#customer__no-customer').hide();
     domUpdates.appendCustomerInfo(currentCustomer);
+  } else {
+    currentCustomer = checkedName;
+    domUpdates.appendCustomerInfo(currentCustomer);
   }
 });
 
