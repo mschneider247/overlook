@@ -40,31 +40,30 @@ domUpdates.initiateTabs();
 
 $('.tabs-nav a').on('click', function (event) {
   event.preventDefault();
-  $('.tabs-nav li').removeClass('tab-active');
-  $(this).parent().addClass('tab-active');
-  $('.tabs-stage div').hide();
-  $($(this).attr('href')).show();
+  let that = this;
+  domUpdates.tabNavigation(that);
 });
 
 $('#search-customers-btn').on('click', function() {
-  $('.customer__section--info').html(``);
-  $('#customer__no-customer').html(``);
-  let input = ($('#search-customers').val()).toLowerCase();
-  let foundCustomer = allCustomers.find(customer => {
-    return (customer.name).toLowerCase().includes(input);
-  });
+  domUpdates.clearCustomerNameInput();
+  let nameInput = $('#search-customers').val();
+  let foundCustomer = checkifNameExists(nameInput)
   if (foundCustomer !== undefined) {
     currentCustomer = foundCustomer;
-    domUpdates.appendCustomerInfo(currentCustomer);
+    domUpdates.showCustomerSelectBtn();
   } else {
     domUpdates.appendNoCustomerFound();
   }
 });
 
+$('#customer__ask-to-select').on('click', function () {
+  domUpdates.appendCustomerInfo(currentCustomer);
+  domUpdates.showCustomerSearchBtn()
+});
+
 $('#customer__add-btn').on('click', function () {
-  $('.customer__section--info').html(``);
-  $('#customer__no-customer').html(``);
-  let newName = $('#customer__new-name-input').val();
+  domUpdates.clearCustomerNameInput();
+  let newName = domUpdates.grabNewCustomerName();
   let checkedName = checkifNameExists(newName);
   if (checkedName === undefined) {
     let newCustomer = new Customer({
@@ -73,7 +72,7 @@ $('#customer__add-btn').on('click', function () {
     });
     allCustomers.push(newCustomer);
     currentCustomer = newCustomer;
-    $('#customer__no-customer').hide();
+    domUpdates.clearNoCustomerError();
     domUpdates.appendCustomerInfo(currentCustomer);
   } else {
     currentCustomer = checkedName;
@@ -83,6 +82,6 @@ $('#customer__add-btn').on('click', function () {
 
 function checkifNameExists(name) {
   return allCustomers.find(customer => {
-    return (customer.name).toLowerCase().includes(name)
+    return (customer.name).toLowerCase().includes((name).toLowerCase());
   });
 }

@@ -50,6 +50,9 @@ a:hover {
   color: #00778f;
   cursor: default; }
 
+.error {
+  color: #ff7b29; }
+
 .tabs-stage {
   display: flex;
   flex-direction: row;

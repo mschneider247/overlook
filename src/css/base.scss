@@ -9,6 +9,7 @@ $color3: hsla(166%, 39%, 43%, 1);
 $color4: hsla(131%, 26%, 79%, 1);
 // yellow
 $color5: hsla(50%, 69%, 72%, 1);
+$orange: #ff7b29;
 
 body {
   background-color: $color1;
@@ -62,7 +63,7 @@ a {
 }
 
 a:hover {
-  color: #ff7b29;
+  color: $orange;
 }
 
 .tab-active a {
@@ -72,9 +73,8 @@ a:hover {
   cursor: default;
 }
 
-.tab-active {
-  // width: 100%;
-  // background: red;
+.error {
+  color: $orange;
 }
 
 .tabs-stage {
