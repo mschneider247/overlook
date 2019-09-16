@@ -34,7 +34,7 @@ setTimeout(() => {
   console.log(allData.rooms[1]);
   console.log(allData.bookings);
   console.log(allData.roomServices);
-}, 1000);
+}, 1500);
 
 domUpdates.initiateTabs();
 
@@ -59,4 +59,16 @@ $('#search-customers-btn').on('click', function() {
   } else {
     domUpdates.appendNoCustomerFound();
   }
+});
+
+$('#customer__add-btn').on('click', function () {
+  let newName = $('#search-customers').val();
+  let newCustomer = new Customer({
+    id: allCustomers.length + 1,
+    name: newName,
+  });
+  allCustomers.push(newCustomer);
+  currentCustomer = newCustomer;
+  $('#customer__no-customer').hide();
+  domUpdates.appendCustomerInfo(currentCustomer);
 });
