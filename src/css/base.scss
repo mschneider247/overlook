@@ -14,14 +14,16 @@ body {
   background-color: $color1;
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  height: 120px;
+}
+
 body {
   color: $color5;
   font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
 }
-
-// .tabs {
-//   max-width: 538px;
-// }
 
 ul {
   display: flex;
@@ -90,4 +92,13 @@ a:hover {
 
 #customer__section--current-info {
   display: block;
+}
+
+.customer__section--info {
+  text-align: center;
+  border: 2px solid $color2;
+  margin: 1% 1% 1% auto;
+  padding: 1%;
+  font-weight: 800;
+  border-radius: 6px;
 }
