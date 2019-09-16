@@ -62,13 +62,24 @@ $('#search-customers-btn').on('click', function() {
 });
 
 $('#customer__add-btn').on('click', function () {
-  let newName = $('#search-customers').val();
-  let newCustomer = new Customer({
-    id: allCustomers.length + 1,
-    name: newName,
-  });
-  allCustomers.push(newCustomer);
-  currentCustomer = newCustomer;
-  $('#customer__no-customer').hide();
-  domUpdates.appendCustomerInfo(currentCustomer);
+  $('.customer__section--info').html(``);
+  $('#customer__no-customer').html(``);
+  let newName = $('#customer__new-name-input').val();
+  let checkedName = checkifNameExists(newName);
+  if (checkedName === undefined) {
+    let newCustomer = new Customer({
+      id: allCustomers.length + 1,
+      name: newName,
+    });
+    allCustomers.push(newCustomer);
+    currentCustomer = newCustomer;
+    $('#customer__no-customer').hide();
+    domUpdates.appendCustomerInfo(currentCustomer);
+  }
 });
+
+function checkifNameExists(name) {
+  return allCustomers.find(customer => {
+    return (customer.name).toLowerCase().includes(name)
+  });
+}
