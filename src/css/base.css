@@ -77,6 +77,13 @@ a:hover {
   display: flex;
   flex-direction: row; }
 
+#roomservice-card {
+  width: 177px;
+  margin: 2%;
+  padding: 3%;
+  border: 2px solid #bcd7c1;
+  border-radius: 6px; }
+
 #customer__section--current-info {
   display: block; }
 

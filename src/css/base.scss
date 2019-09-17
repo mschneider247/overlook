@@ -104,6 +104,14 @@ a:hover {
   flex-direction: row;
 }
 
+#roomservice-card {
+  width: 177px;
+  margin: 2%;
+  padding: 3%;
+  border: 2px solid $color4;
+  border-radius: 6px;
+}
+
 #customer__section--current-info {
   display: block;
 }
