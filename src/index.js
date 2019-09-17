@@ -75,6 +75,10 @@ $('.tabs-nav a').on('click', function (event) {
   domUpdates.tabNavigation(that);
 });
 
+$('#search-roomservice-btn').on('click', function () {
+  console.log("Roomservice Btn firing!")
+});
+
 $('#search-customers-btn').on('click', function() {
   domUpdates.clearCustomerNameInput();
   let nameInput = $('#search-customers').val();
