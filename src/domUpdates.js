@@ -10,6 +10,11 @@ export default {
     $('#customer__no-customer').hide();
   },
 
+  initiateMain(today, roomsAvailable) {
+    $('#today').text(today);
+    $('#rooms-available-today').text(roomsAvailable);
+  },
+
   tabNavigation(that) {
     $('.tabs-nav li').removeClass('tab-active');
     $(that).parent().addClass('tab-active');

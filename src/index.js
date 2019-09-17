@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import './css/base.scss';
 import Customer from './Customer';
+import BookingRepo from './BookingRepo';
+import HotelRooms from './HotelRooms';
 import domUpdates from "./domUpdates";
 
 const usersFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users")
@@ -16,25 +18,37 @@ const allData = { users: [], rooms: [], bookings: [], roomServices: []};
 
 const allCustomers = [];
 let currentCustomer;
+const bookingRepo = new BookingRepo();
+const hotelRooms = new HotelRooms();
+let today = "2019/09/16";
 
 Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(data => {
-  allData.users = data[0].users;
-  allData.rooms = data[1].rooms;
-  allData.bookings = data[2].bookings;
+  data[0].users.forEach(user => {
+    let newCustomer = new Customer(user);
+    allCustomers.push(newCustomer);
+  });
+  data[1].rooms.forEach(room => {
+    hotelRooms.addRoom(room);
+  });
+  data[2].bookings.forEach(booking => {
+    bookingRepo.addBooking(booking);
+  });
   allData.roomServices = data[3].roomServices;
   return allData;
 });
 
 setTimeout(() => {
-  allData.users.forEach(user => {
-    let newCustomer = new Customer(user);
-    allCustomers.push(newCustomer);
-  })
+  bookingRepo.findTotalRooms();
+  bookingRepo.roomsAvailableToday(today);
   console.log(allCustomers);
-  console.log(allData.rooms[1]);
-  console.log(allData.bookings);
+  console.log(hotelRooms.rooms);
+  console.log(bookingRepo.bookings);
+  console.log(bookingRepo.bookedRoomNumbers);
+  console.log(bookingRepo.totalRooms);
   console.log(allData.roomServices);
-}, 1500);
+  // console.log(hotelRooms.getRoomIncome(bookingRepo.roomNumbers))
+  domUpdates.initiateMain(today, bookingRepo.roomsAvailableToday(today));
+}, 1750);
 
 domUpdates.initiateTabs();
 
