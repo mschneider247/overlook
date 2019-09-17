@@ -12,9 +12,9 @@
     <container class="tabs">
       <ul class="tabs-nav">
         <li><a href="#main-tab">Main</a></li>
-        <li><a href="#orders">Orders</a></li>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#customer">Customer</a></li>
+        <li><a href="#orders-tab">Orders</a></li>
+        <li><a href="#rooms-tab">Rooms</a></li>
+        <li><a href="#customer-tab">Customer</a></li>
       </ul>
       <container class="tabs-stage">
         <div id="main-tab">
@@ -27,14 +27,24 @@
           <p>Rooms available today:</p>
           <p id="todays-percent-rooms-available" class="main-data"></p>
         </div>
-        <div id="orders">
-          <p>Display all Orders</p>
+        <div id="orders-tab">
+          <container>
+            <p>Display Today's Orders</p>
+            <section>
+              <article id="roomservice-card">
+                <p>date</p>
+                <p>userID</p>
+                <p>food</p>
+                <p>totalCost</p>
+              </article>
+            </section>
+          </container>
           <p>Search orders by date</p>
         </div>
-        <div id="rooms">
+        <div id="rooms-tab">
           <p>ROOMS TAB</p>
         </div>
-        <div id="customer">
+        <div id="customer-tab">
           <container>
             <section>
               <p>Search for a Customer:</p>
