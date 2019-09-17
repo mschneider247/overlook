@@ -1,6 +1,4 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-// dark blue
-$color1: hsla(224%, 40%, 22%, 1);
+$backgroundDark: hsla(224%, 40%, 22%, 1);
 // blue
 $color2: hsla(190%, 100%, 28%, 1);
 // green
@@ -12,17 +10,18 @@ $color5: hsla(50%, 69%, 72%, 1);
 $orange: #ff7b29;
 
 body {
-  background-color: $color1;
+  background-color: $backgroundDark;
 }
 
 header {
   display: flex;
   flex-direction: row;
   height: 140px;
+  color: $color5;
 }
 
 body {
-  color: $color5;
+  color: $backgroundDark;
   font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
 }
 
@@ -88,6 +87,16 @@ a:hover {
   position: relative;
   top: -1px;
   background: #fff;
+}
+
+#main-tab {
+ margin-left: 10%;
+}
+
+.main-data {
+  margin-left: 12%;
+  color: $backgroundDark;
+  font-size: 18px;
 }
 
 #customer__section--current-info {

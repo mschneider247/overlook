@@ -36,32 +36,30 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
   data[3].roomServices.forEach(service => {
     roomService.addService(service);
   });
+  bookingRepo.setTotalRooms();
+  bookingRepo.setRoomsAndCustomersBookedToday(today);
+  initiateMainTab();
 });
 
 setTimeout(() => {
-  bookingRepo.setTotalRooms();
-  bookingRepo.setRoomsAndCustomersBookedToday(today);
   console.log("All Customers", allCustomers);
   console.log("hotelRooms.rooms", hotelRooms.rooms);
   console.log("bookingRepo.bookings", bookingRepo.bookings);
   console.log("roomService.services", roomService.services);
   console.log("booked Room Numbers", bookingRepo.bookedRoomNumbers);
   console.log("booked Customer IDs", bookingRepo.bookedCustomerIDs);
+}, 1750);
+
+domUpdates.initiateTabs();
+
+function initiateMainTab() {
   let roomsAvailableToday = (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length);
   let roomIncomeToday = hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers);
   let servicesIncomeToday = roomService.getServicesIncomeByDate(bookingRepo.bookedCustomerIDs, today)
   let todaysIncome = (roomIncomeToday + servicesIncomeToday).toFixed(2);
   let percentRoomsAvailable = ((roomsAvailableToday / bookingRepo.totalRooms) * 100).toFixed(0);
-  console.log(percentRoomsAvailable);
-  // need to send a fourth argument to initiateMain
-  // needs to be rooms available divided by total rooms
-  // then math to make it a percent
-  // rooms available today
-  // total rooms should be in bookingRepo.totalRooms
   domUpdates.initiateMain(today, roomsAvailableToday, todaysIncome, percentRoomsAvailable);
-}, 1750);
-
-domUpdates.initiateTabs();
+}
 
 $('.tabs-nav a').on('click', function (event) {
   event.preventDefault();

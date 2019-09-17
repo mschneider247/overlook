@@ -1,14 +1,14 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 body {
   background-color: #222e4f; }
 
 header {
   display: flex;
   flex-direction: row;
-  height: 140px; }
+  height: 140px;
+  color: #e9d886; }
 
 body {
-  color: #e9d886;
+  color: #222e4f;
   font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif; }
 
 ul {
@@ -64,6 +64,14 @@ a:hover {
   position: relative;
   top: -1px;
   background: #fff; }
+
+#main-tab {
+  margin-left: 10%; }
+
+.main-data {
+  margin-left: 12%;
+  color: #222e4f;
+  font-size: 18px; }
 
 #customer__section--current-info {
   display: block; }
