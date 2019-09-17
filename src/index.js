@@ -6,6 +6,13 @@ import HotelRooms from './HotelRooms';
 import RoomService from './RoomService';
 import domUpdates from "./domUpdates";
 
+const allCustomers = [];
+let currentCustomer;
+const bookingRepo = new BookingRepo();
+const hotelRooms = new HotelRooms();
+const roomService = new RoomService();
+let today = "2019/09/10";
+
 const usersFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users")
   .then(data => data.json());
 const roomsFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms")
@@ -14,13 +21,6 @@ const bookingsFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/
   .then(data => data.json());
 const roomServicesFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices")
   .then(data => data.json());
-
-const allCustomers = [];
-let currentCustomer;
-const bookingRepo = new BookingRepo();
-const hotelRooms = new HotelRooms();
-const roomService = new RoomService();
-let today = "2019/09/10";
 
 Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(data => {
   data[0].users.forEach(user => {
@@ -47,10 +47,18 @@ setTimeout(() => {
   console.log("roomService.services", roomService.services);
   console.log("booked Room Numbers", bookingRepo.bookedRoomNumbers);
   console.log("booked Customer IDs", bookingRepo.bookedCustomerIDs);
+  let roomsAvailableToday = (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length);
   let roomIncomeToday = hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers);
   let servicesIncomeToday = roomService.getServicesIncomeByDate(bookingRepo.bookedCustomerIDs, today)
   let todaysIncome = (roomIncomeToday + servicesIncomeToday).toFixed(2);
-  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length), todaysIncome);
+  let percentRoomsAvailable = ((roomsAvailableToday / bookingRepo.totalRooms) * 100).toFixed(0);
+  console.log(percentRoomsAvailable);
+  // need to send a fourth argument to initiateMain
+  // needs to be rooms available divided by total rooms
+  // then math to make it a percent
+  // rooms available today
+  // total rooms should be in bookingRepo.totalRooms
+  domUpdates.initiateMain(today, roomsAvailableToday, todaysIncome, percentRoomsAvailable);
 }, 1750);
 
 domUpdates.initiateTabs();
