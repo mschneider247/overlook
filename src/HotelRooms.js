@@ -8,14 +8,12 @@ class HotelRooms {
   }
 
   getRoomIncome(occupiedRooms) {
-    console.log("occupiedRooms", occupiedRooms);
-    let log = this.rooms.reduce((acc, room) => {
-      if (occupiedRooms.includes(room.roomNumber)) {
+    return this.rooms.reduce((acc, room) => {
+      if (occupiedRooms.includes(room.number)) {
         acc += room.costPerNight
       }
       return acc;
-    }, 0)
-    console.log("accumulated total",log);
+    }, 0);
   }
 }
 

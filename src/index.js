@@ -38,16 +38,16 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
 });
 
 setTimeout(() => {
-  bookingRepo.findTotalRooms();
-  bookingRepo.roomsAvailableToday(today);
-  console.log(allCustomers);
-  console.log(hotelRooms.rooms);
-  console.log(bookingRepo.bookings);
-  console.log(bookingRepo.bookedRoomNumbers);
-  console.log(bookingRepo.totalRooms);
+  bookingRepo.setTotalRooms();
+  bookingRepo.setRoomsBookedToday(today);
+  console.log("All Customers", allCustomers);
+  console.log("hotelRooms.rooms",hotelRooms.rooms);
+  console.log("bookingRepo.bookings",bookingRepo.bookings);
+  console.log("booked Room Numbers",bookingRepo.bookedRoomNumbers);
+  console.log("Total rooms",bookingRepo.totalRooms);
   console.log(allData.roomServices);
-  // console.log(hotelRooms.getRoomIncome(bookingRepo.roomNumbers))
-  domUpdates.initiateMain(today, bookingRepo.roomsAvailableToday(today));
+  console.log(hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers))
+  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length));
 }, 1750);
 
 domUpdates.initiateTabs();
