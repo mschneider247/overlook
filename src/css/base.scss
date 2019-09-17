@@ -99,6 +99,17 @@ a:hover {
   font-size: 18px;
 }
 
+#orders-tab {
+  display: flex;
+  flex-direction: column;
+}
+
+#search-roomservice, 
+#search-roomservice-btn {
+  margin: 2%;
+  width: 40%
+}
+
 #todays-room-service-orders {
   display: flex;
   flex-direction: row;
