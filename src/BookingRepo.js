@@ -10,10 +10,10 @@ class BookingRepo {
     this.bookings.push(booking);
   }
 
-  findTotalRooms() {
+  setTotalRooms() {
     let roomNums = this.bookings.reduce((acc, booking) => {
-      if (!acc.includes(booking.number)) {
-        acc.push(booking.number);
+      if (!acc.includes(booking.roomNumber)) {
+        acc.push(booking.roomNumber);
       }
       return acc;
     }, []).sort((a,b) => a - b);
@@ -21,14 +21,13 @@ class BookingRepo {
     this.totalRooms = roomNums.length;
   }
 
-  roomsAvailableToday(today) {
+  setRoomsBookedToday(today) {
     let bookedRooms = this.bookings.filter(booking => {
       return booking.date === today
     });
     this.bookedRoomNumbers = bookedRooms.map(room => {
-      return room.number;
+      return room.roomNumber;
     });
-    return this.totalRooms - bookedRooms.length
   }
 }
 
