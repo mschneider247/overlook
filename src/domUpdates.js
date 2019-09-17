@@ -17,6 +17,16 @@ export default {
     $('#todays-percent-rooms-available').text(`${percentRoomsAvailable}%`)
   },
 
+  appendServiceCard(service) {
+    console.log(service);
+    $('#todays-room-service-orders').append(`<article id="roomservice-card">
+      <p> Date: ${service.date} </p>
+      <p> userID: ${service.userID}</p>
+      <p> food: ${service.food}</p>
+      <p> total cost: $${service.totalCost}</p>
+    </article>`)
+  },
+
   tabNavigation(that) {
     $('.tabs-nav li').removeClass('tab-active');
     $(that).parent().addClass('tab-active');

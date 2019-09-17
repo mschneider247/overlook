@@ -39,6 +39,7 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
   bookingRepo.setTotalRooms();
   bookingRepo.setRoomsAndCustomersBookedToday(today);
   initiateMainTab();
+  initiateOrdersTab();
 });
 
 setTimeout(() => {
@@ -59,6 +60,13 @@ function initiateMainTab() {
   let todaysIncome = (roomIncomeToday + servicesIncomeToday).toFixed(2);
   let percentRoomsAvailable = ((roomsAvailableToday / bookingRepo.totalRooms) * 100).toFixed(0);
   domUpdates.initiateMain(today, roomsAvailableToday, todaysIncome, percentRoomsAvailable);
+}
+
+function initiateOrdersTab() {
+  console.log("Services Today", roomService.servicesToday);
+  roomService.servicesToday.forEach(service => {
+    domUpdates.appendServiceCard(service);
+  })
 }
 
 $('.tabs-nav a').on('click', function (event) {
