@@ -64,6 +64,9 @@ function initiateMainTab() {
 
 function initiateOrdersTab() {
   console.log("Services Today", roomService.servicesToday);
+  roomService.servicesToday.forEach(service => {
+    domUpdates.appendServiceCard(service);
+  })
 }
 
 $('.tabs-nav a').on('click', function (event) {

@@ -99,6 +99,11 @@ a:hover {
   font-size: 18px;
 }
 
+#todays-room-service-orders {
+  display: flex;
+  flex-direction: row;
+}
+
 #customer__section--current-info {
   display: block;
 }
