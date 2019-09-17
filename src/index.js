@@ -20,7 +20,7 @@ let currentCustomer;
 const bookingRepo = new BookingRepo();
 const hotelRooms = new HotelRooms();
 const roomService = new RoomService();
-let today = "2019/09/16";
+let today = "2019/09/10";
 
 Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(data => {
   data[0].users.forEach(user => {
@@ -44,20 +44,13 @@ setTimeout(() => {
   console.log("All Customers", allCustomers);
   console.log("hotelRooms.rooms", hotelRooms.rooms);
   console.log("bookingRepo.bookings", bookingRepo.bookings);
+  console.log("roomService.services", roomService.services);
   console.log("booked Room Numbers", bookingRepo.bookedRoomNumbers);
   console.log("booked Customer IDs", bookingRepo.bookedCustomerIDs);
-  console.log("Total rooms", bookingRepo.totalRooms);
-  console.log("roomService.services", roomService.services);
-  console.log(hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers))
-  // need to reach into room service now, what does it even look like?
-  // how is the data structured?  So I need that same array from bookings
-  // wait no... thats for rooms booked.  I need to look at users booked
-  // for today and then use that to check the total Cost of their room
-  // service...
-  // need to set up room service
-  //
-  console.log("need to reach into roomService now send it today?")
-  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length));
+  let roomIncomeToday = hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers);
+  let servicesIncomeToday = roomService.getServicesIncomeByDate(bookingRepo.bookedCustomerIDs, today)
+  let todaysIncome = (roomIncomeToday + servicesIncomeToday).toFixed(2);
+  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length), todaysIncome);
 }, 1750);
 
 domUpdates.initiateTabs();

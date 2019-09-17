@@ -10,9 +10,10 @@ export default {
     $('#customer__no-customer').hide();
   },
 
-  initiateMain(today, roomsAvailable) {
+  initiateMain(today, roomsAvailable, todaysIncome) {
     $('#today').text(today);
     $('#rooms-available-today').text(roomsAvailable);
+    $('#todays-total-revenue').text(`$${todaysIncome}`);
   },
 
   tabNavigation(that) {
