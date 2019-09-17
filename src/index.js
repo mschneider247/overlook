@@ -64,16 +64,30 @@ function initiateMainTab() {
 
 function initiateOrdersTab() {
   console.log("Services Today", roomService.servicesToday);
+  let locationToAppend = '#todays-room-service-orders'
   roomService.servicesToday.forEach(service => {
-    domUpdates.appendServiceCard(service);
+    domUpdates.appendServiceCard(service, locationToAppend);
   })
 }
 
-$('.tabs-nav a').on('click', function (event) {
+$('.tabs-nav a').on('click', function(event) {
   event.preventDefault();
   let that = this;
   domUpdates.tabNavigation(that);
 });
+
+$('#search-roomservice-btn').on('click', function() {
+  domUpdates.clearRoomserviceSearch();
+  let inputValue = $('#search-roomservice').val()
+  let locationToAppend = '#search-room-service-orders'
+  if (roomService.getServicesByDate(inputValue).length > 0) {
+    roomService.getServicesByDate(inputValue).forEach(service => {
+      domUpdates.appendServiceCard(service, locationToAppend);
+    });
+  } else {
+    domUpdates.appendErrorToSearchResults(locationToAppend);
+  }
+})
 
 $('#search-customers-btn').on('click', function() {
   domUpdates.clearCustomerNameInput();

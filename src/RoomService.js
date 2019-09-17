@@ -9,7 +9,7 @@ class RoomService {
   }
 
   getServicesIncomeByDate(bookedCustomers, today) {
-    let servicesToday = this.services.filter(service => service.date === today);
+    let servicesToday = this.getServicesByDate(today);
     this.servicesToday = servicesToday;
     return servicesToday.reduce((acc, service) => {
       if (bookedCustomers.includes(service.userID)) {
@@ -17,6 +17,10 @@ class RoomService {
       }
       return acc;
     }, 0);
+  }
+
+  getServicesByDate(today) {
+    return this.services.filter(service => service.date === today);
   }
 }
 
