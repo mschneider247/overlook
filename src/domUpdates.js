@@ -18,7 +18,6 @@ export default {
   },
 
   appendServiceCard(service) {
-    console.log(service);
     $('#todays-room-service-orders').append(`<article id="roomservice-card">
       <p> Date: ${service.date} </p>
       <p> userID: ${service.userID}</p>
