@@ -17,13 +17,21 @@ export default {
     $('#todays-percent-rooms-available').text(`${percentRoomsAvailable}%`)
   },
 
-  appendServiceCard(service) {
-    $('#todays-room-service-orders').append(`<article id="roomservice-card">
+  appendServiceCard(service, location) {
+    $(`${location}`).append(`<article id="roomservice-card">
       <p> Date: ${service.date} </p>
       <p> userID: ${service.userID}</p>
       <p> food: ${service.food}</p>
       <p> total cost: $${service.totalCost}</p>
     </article>`)
+  },
+
+  clearRoomserviceSearch() {
+    $('#search-room-service-orders').html(``);
+  },
+
+  appendErrorToSearchResults(location) {
+    $(`${location}`).append(`<p class="error">     Error, search returned nothing</p>`);
   },
 
   tabNavigation(that) {
