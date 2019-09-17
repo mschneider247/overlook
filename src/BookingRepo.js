@@ -3,6 +3,7 @@ class BookingRepo {
     this.bookings = [];
     this.roomNumbers = [];
     this.bookedRoomNumbers = [];
+    this.bookedCustomerIDs = [];
     this.totalRooms = 0;
   }
 
@@ -21,12 +22,15 @@ class BookingRepo {
     this.totalRooms = roomNums.length;
   }
 
-  setRoomsBookedToday(today) {
+  setRoomsAndCustomersBookedToday(today) {
     let bookedRooms = this.bookings.filter(booking => {
       return booking.date === today
     });
     this.bookedRoomNumbers = bookedRooms.map(room => {
       return room.roomNumber;
+    });
+    this.bookedCustomerIDs = bookedRooms.map(room => {
+      return room.userID;
     });
   }
 }

@@ -3,6 +3,7 @@ import './css/base.scss';
 import Customer from './Customer';
 import BookingRepo from './BookingRepo';
 import HotelRooms from './HotelRooms';
+import RoomService from './RoomService';
 import domUpdates from "./domUpdates";
 
 const usersFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users")
@@ -14,13 +15,12 @@ const bookingsFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/
 const roomServicesFetch = fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices")
   .then(data => data.json());
 
-const allData = { users: [], rooms: [], bookings: [], roomServices: []};
-
 const allCustomers = [];
 let currentCustomer;
 const bookingRepo = new BookingRepo();
 const hotelRooms = new HotelRooms();
-let today = "2019/09/16";
+const roomService = new RoomService();
+let today = "2019/09/10";
 
 Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(data => {
   data[0].users.forEach(user => {
@@ -33,21 +33,24 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
   data[2].bookings.forEach(booking => {
     bookingRepo.addBooking(booking);
   });
-  allData.roomServices = data[3].roomServices;
-  return allData;
+  data[3].roomServices.forEach(service => {
+    roomService.addService(service);
+  });
 });
 
 setTimeout(() => {
   bookingRepo.setTotalRooms();
-  bookingRepo.setRoomsBookedToday(today);
+  bookingRepo.setRoomsAndCustomersBookedToday(today);
   console.log("All Customers", allCustomers);
-  console.log("hotelRooms.rooms",hotelRooms.rooms);
-  console.log("bookingRepo.bookings",bookingRepo.bookings);
-  console.log("booked Room Numbers",bookingRepo.bookedRoomNumbers);
-  console.log("Total rooms",bookingRepo.totalRooms);
-  console.log(allData.roomServices);
-  console.log(hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers))
-  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length));
+  console.log("hotelRooms.rooms", hotelRooms.rooms);
+  console.log("bookingRepo.bookings", bookingRepo.bookings);
+  console.log("roomService.services", roomService.services);
+  console.log("booked Room Numbers", bookingRepo.bookedRoomNumbers);
+  console.log("booked Customer IDs", bookingRepo.bookedCustomerIDs);
+  let roomIncomeToday = hotelRooms.getRoomIncome(bookingRepo.bookedRoomNumbers);
+  let servicesIncomeToday = roomService.getServicesIncomeByDate(bookingRepo.bookedCustomerIDs, today)
+  let todaysIncome = (roomIncomeToday + servicesIncomeToday).toFixed(2);
+  domUpdates.initiateMain(today, (bookingRepo.totalRooms - bookingRepo.bookedRoomNumbers.length), todaysIncome);
 }, 1750);
 
 domUpdates.initiateTabs();
