@@ -34,6 +34,10 @@ export default {
     $(`${location}`).append(`<p class="error">     Error, search returned nothing</p>`);
   },
 
+  appendMostPopularDates(dates) {
+    $('#most-popular-days').text(dates);
+  },
+
   tabNavigation(that) {
     $('.tabs-nav li').removeClass('tab-active');
     $(that).parent().addClass('tab-active');

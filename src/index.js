@@ -40,6 +40,7 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
   bookingRepo.setRoomsAndCustomersBookedToday(today);
   initiateMainTab();
   initiateOrdersTab();
+  initiateRoomsTab();
 });
 
 setTimeout(() => {
@@ -63,11 +64,16 @@ function initiateMainTab() {
 }
 
 function initiateOrdersTab() {
-  console.log("Services Today", roomService.servicesToday);
   let locationToAppend = '#todays-room-service-orders'
   roomService.servicesToday.forEach(service => {
     domUpdates.appendServiceCard(service, locationToAppend);
   })
+}
+
+function initiateRoomsTab() {
+  console.log("THIS IS ROOMS")
+  console.log(bookingRepo.mostPopularBookedDates());
+  domUpdates.appendMostPopularDates(bookingRepo.mostPopularBookedDates());
 }
 
 $('.tabs-nav a').on('click', function(event) {

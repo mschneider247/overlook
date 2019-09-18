@@ -33,6 +33,35 @@ class BookingRepo {
       return room.userID;
     });
   }
+
+  mostPopularBookedDates() {
+    let popularBookDates = this.bookings.reduce((acc, booking) => {
+      if (!acc[booking.date]) {
+        acc[booking.date] = 1;
+      } else {
+        acc[booking.date]++;
+      }
+      return acc;
+    }, {});
+    return this.getMostPopularDays(popularBookDates);
+  }
+
+  getMostPopularDays(popularBookDates) {
+    let bookingDates = Object.keys(popularBookDates)
+    let greatestValue = 0;
+    bookingDates.forEach(date => {
+      if (popularBookDates[date] > greatestValue) {
+        greatestValue++;
+      }
+    });
+    let popularDates = [];
+    bookingDates.forEach(date => {
+      if (popularBookDates[date] === greatestValue) {
+        popularDates.push(date);
+      }
+    });
+    return popularDates;
+  }
 }
 
 export default BookingRepo;
