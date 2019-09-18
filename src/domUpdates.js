@@ -30,12 +30,30 @@ export default {
     $('#search-room-service-orders').html(``);
   },
 
+  clearRoomsAvailableSearch() {
+    $('#search-rooms-available-by-date').html(``);
+  },
+
   appendErrorToSearchResults(location) {
     $(`${location}`).append(`<p class="error">     Error, search returned nothing</p>`);
   },
 
-  appendMostPopularDates(dates) {
+  appendMostPopularDates(dates, mostAvailableDay) {
     $('#most-popular-days').text(dates);
+    $('#most-available-day').text(mostAvailableDay);
+  },
+
+  appendRoomCards(rooms) {
+    rooms.forEach(room => {
+      $('#search-rooms-available-by-date').append(`<article class="room-card">
+          <p>Room# ${room.number}</p>
+          <p>Type: ${room.roomType}</p>
+          <p>Bidet? ${room.bidet}</p>
+          <p>BedSize! ${room.bedSize}</p>
+          <p>#Beds: ${room.numBeds}</p>
+          <p>CostPerNight $${room.costPerNight}</p>
+        </article>`)
+    })
   },
 
   tabNavigation(that) {

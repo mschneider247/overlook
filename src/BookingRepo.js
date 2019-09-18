@@ -34,6 +34,34 @@ class BookingRepo {
     });
   }
 
+  filterAvailableRoomsByDate(date) {
+    let filteredDates = this.bookings.filter(booking => {
+      return booking.date === date
+    });
+    let bookedRooms = filteredDates.map(room => {
+      return room.roomNumber
+    });
+    return this.roomNumbers.filter(roomNum => {
+      return !bookedRooms.includes(roomNum);
+    });
+  }
+
+  dateMostRoomsAvailable() {
+    let dates = this.bookings.reduce((acc, booking) => {
+      if (!acc.includes(booking.date)) {
+        acc.push(booking.date)
+      }
+      return acc;
+    },[])
+    let datesAndRoomsAvailable = dates.map(date => {
+      return {
+        length: this.filterAvailableRoomsByDate(date).length,
+        date: [date]
+      }
+    }).sort((a, b) => b.length - a.length);
+    return datesAndRoomsAvailable[0].date
+  }
+
   mostPopularBookedDates() {
     let popularBookDates = this.bookings.reduce((acc, booking) => {
       if (!acc[booking.date]) {

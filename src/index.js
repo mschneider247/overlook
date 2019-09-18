@@ -71,15 +71,26 @@ function initiateOrdersTab() {
 }
 
 function initiateRoomsTab() {
-  console.log("THIS IS ROOMS")
-  console.log(bookingRepo.mostPopularBookedDates());
-  domUpdates.appendMostPopularDates(bookingRepo.mostPopularBookedDates());
+  let mostAvailableDay = bookingRepo.dateMostRoomsAvailable()
+  domUpdates.appendMostPopularDates(bookingRepo.mostPopularBookedDates(), mostAvailableDay);
 }
 
 $('.tabs-nav a').on('click', function(event) {
   event.preventDefault();
   let that = this;
   domUpdates.tabNavigation(that);
+});
+
+$('#search-rooms-available-btn').on('click', function() {
+  let inputValue = $('#search-rooms-available').val()
+  domUpdates.clearRoomsAvailableSearch();
+  let roomsAvailable = bookingRepo.filterAvailableRoomsByDate(inputValue);
+  let location = '#search-rooms-available-by-date'
+  if (roomsAvailable.length < 50) {
+    domUpdates.appendRoomCards(hotelRooms.findRoomsByNumber(roomsAvailable));
+  } else {
+    domUpdates.appendErrorToSearchResults(location);
+  } 
 });
 
 $('#search-roomservice-btn').on('click', function() {
@@ -93,7 +104,7 @@ $('#search-roomservice-btn').on('click', function() {
   } else {
     domUpdates.appendErrorToSearchResults(locationToAppend);
   }
-})
+});
 
 $('#search-customers-btn').on('click', function() {
   domUpdates.clearCustomerNameInput();
