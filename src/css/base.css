@@ -66,8 +66,22 @@ a:hover {
   top: -1px;
   background: #fff; }
 
-#main-tab {
+#main-tab,
+#rooms-tab {
   margin-left: 10%; }
+
+#search-rooms-available-by-date {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+
+.room-card {
+  text-align: center;
+  font-size: 12px;
+  width: 80px;
+  margin: 1%;
+  padding: 1% 3%;
+  border: 2px solid #bcd7c1; }
 
 .main-data {
   margin-left: 12%;
