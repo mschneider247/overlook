@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Overlook Hotel</title>
+  </head>
+  <body>
+    <header>
+      <h1>Overlook Hotel</h1>
+      <div class="customer__section--info">
+      </div>
+    </header>
+    <container class="tabs">
+      <ul class="tabs-nav">
+        <li><a href="#main-tab">Main</a></li>
+        <li><a href="#orders-tab">Orders</a></li>
+        <li><a href="#rooms-tab">Rooms</a></li>
+        <li><a href="#customer-tab">Customer</a></li>
+      </ul>
+      <container class="tabs-stage">
+        <div id="main-tab">
+          <p>Today's date:</p>
+          <p id="today" class="main-data"></p>
+          <p>Number of rooms available today:</p>
+          <p id="rooms-available-today" class="main-data"></p>
+          <p>Today's total revenue:</p>
+          <p id="todays-total-revenue" class="main-data"></p>
+          <p>Rooms available today:</p>
+          <p id="todays-percent-rooms-available" class="main-data"></p>
+        </div>
+        <div id="orders-tab">
+          <container>
+            <p>Today's Orders:</p>
+            <section id="todays-room-service-orders">
+            </section>
+          </container>
+          <p>Search orders by date</p>
+          <input type="text" id="search-roomservice" placeholder=" Date: YYYY/MM/DD ">
+          <button id="search-roomservice-btn">
+            Search Room Service Orders
+          </button>
+          <container id="search-room-service-orders">
+          </container>
+        </div>
+        <div id="rooms-tab">
+          <p>Most popular Booking Dates:</p>
+          <p id="most-popular-days" class="main-data"></p>
+          <p>Date with most rooms available:</p>
+          <p id="most-available-day" class="main-data"></p>
+          <container>
+            <p>Search Rooms Available by Date:</p>
+            <input type="text" id="search-rooms-available" placeholder=" Date: YYYY/MM/DD ">
+            <button id="search-rooms-available-btn">
+              Search
+            </button>
+            <container id="search-rooms-available-by-date">
+            </container>
+          </container>
+        </div>
+        <div id="customer-tab">
+          <container>
+            <section>
+              <p>Search for a Customer:</p>
+              <input type="text" id="search-customers"
+              placeholder=" Enter Customer Name ">
+              <button id="search-customers-btn">
+                Search Customers
+              </button>
+            </section>
+            <section id="customer__ask-to-select">
+              <p class="error">Found Customer!</p>
+                <article id="found-customer">
+                </article>
+              <button id="customer__ask-to-select-btn">
+                Select Customer
+              </button>
+            </section>
+            <section id="customer__no-customer">
+              <p class="error">Error, Did not find customer. Please search again or
+                add new customer below!</p>
+            </section>
+            <section id="customer__add-customer">
+              <p>Add a New Customer:</p>
+              <p></p>
+              <input type="text" id="customer__new-name-input" placeholder=" Enter New Customer ">
+              <button id="customer__add-btn">
+                Add New Customer
+              </button>
+              <p id="customer-already-exists" class="error">Customer Already Exists!</p>
+            </section>
+          </container>
+        </div>
+      </container>
+    </container>
+  <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
