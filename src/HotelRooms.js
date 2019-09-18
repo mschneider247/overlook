@@ -15,6 +15,12 @@ class HotelRooms {
       return acc;
     }, 0);
   }
+
+  findRoomsByNumber(roomNumbers) {
+    return this.rooms.filter(room => {
+      return roomNumbers.includes(room.number);
+    })
+  }
 }
 
 export default HotelRooms;
