@@ -43,15 +43,6 @@ Promise.all([usersFetch, roomsFetch, bookingsFetch, roomServicesFetch]).then(dat
   initiateRoomsTab();
 });
 
-setTimeout(() => {
-  console.log("All Customers", allCustomers);
-  console.log("hotelRooms.rooms", hotelRooms.rooms);
-  console.log("bookingRepo.bookings", bookingRepo.bookings);
-  console.log("roomService.services", roomService.services);
-  console.log("booked Room Numbers", bookingRepo.bookedRoomNumbers);
-  console.log("booked Customer IDs", bookingRepo.bookedCustomerIDs);
-}, 1750);
-
 domUpdates.initiateTabs();
 
 function initiateMainTab() {
@@ -82,7 +73,7 @@ $('.tabs-nav a').on('click', function(event) {
 });
 
 $('#search-rooms-available-btn').on('click', function() {
-  let inputValue = $('#search-rooms-available').val()
+  let inputValue = domUpdates.grabSearchRoomsAvailable();
   domUpdates.clearRoomsAvailableSearch();
   let roomsAvailable = bookingRepo.filterAvailableRoomsByDate(inputValue);
   let location = '#search-rooms-available-by-date'
