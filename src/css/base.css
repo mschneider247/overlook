@@ -44,6 +44,10 @@ a {
 a:hover {
   color: #ff7b29; }
 
+button:hover {
+  background-color: #bcd7c1;
+  transform: scale(1.1); }
+
 .tab-active a {
   background: #fff;
   border-bottom-color: transparent;
@@ -67,7 +71,9 @@ a:hover {
   background: #fff; }
 
 #main-tab,
-#rooms-tab {
+#rooms-tab,
+#orders-tab,
+#customer-tab {
   margin-left: 10%; }
 
 #search-rooms-available-by-date {

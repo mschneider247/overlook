@@ -66,9 +66,14 @@
                 Search Customers
               </button>
             </section>
-            <button id="customer__ask-to-select">
-              Select Customer
-            </button>
+            <section id="customer__ask-to-select">
+              <p class="error">Found Customer!</p>
+                <article id="found-customer">
+                </article>
+              <button id="customer__ask-to-select-btn">
+                Select Customer
+              </button>
+            </section>
             <section id="customer__no-customer">
               <p class="error">Error, Did not find customer. Please search again or
                 add new customer below!</p>
@@ -80,6 +85,7 @@
               <button id="customer__add-btn">
                 Add New Customer
               </button>
+              <p id="customer-already-exists" class="error">Customer Already Exists!</p>
             </section>
           </container>
         </div>
