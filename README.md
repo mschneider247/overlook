@@ -1,6 +1,8 @@
 # Overlook Hotel
 ## By: Michael Schneider
 
+Check out the live site<a href=https://mschneider247.github.io/overlook> here </a> on Github!
+
 ## Abstract
 
 An app based around organizing a hotel's data for the Manager.  The manager can quickly see all relevant information for the day as well as search and add guests.
