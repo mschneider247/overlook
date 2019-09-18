@@ -112,13 +112,13 @@ $('#search-customers-btn').on('click', function() {
   let foundCustomer = checkifNameExists(nameInput)
   if (foundCustomer !== undefined) {
     currentCustomer = foundCustomer;
-    domUpdates.showCustomerSelectBtn();
+    domUpdates.showCustomerSelectBtn(currentCustomer);
   } else {
     domUpdates.appendNoCustomerFound();
   }
 });
 
-$('#customer__ask-to-select').on('click', function () {
+$('#customer__ask-to-select-btn').on('click', function () {
   domUpdates.appendCustomerInfo(currentCustomer);
   domUpdates.showCustomerSearchBtn()
 });
@@ -137,6 +137,7 @@ $('#customer__add-btn').on('click', function () {
     domUpdates.clearNoCustomerError();
     domUpdates.appendCustomerInfo(currentCustomer);
   } else {
+    domUpdates.flashUserAlreadyExists();
     currentCustomer = checkedName;
     domUpdates.appendCustomerInfo(currentCustomer);
   }

@@ -8,6 +8,7 @@ export default {
     $('.customer__section--info').hide();
     $('#customer__ask-to-select').hide();
     $('#customer__no-customer').hide();
+    $('#customer-already-exists').hide();
   },
 
   initiateMain(today, roomsAvailable, todaysIncome, percentRoomsAvailable) {
@@ -63,9 +64,12 @@ export default {
     $($(that).attr('href')).show();
   },
 
-  showCustomerSelectBtn() {
+  showCustomerSelectBtn(foundCustomer) {
+    $('#found-customer').html(``);
     $('#customer__ask-to-select').show();
     $('#search-customers-btn').hide();
+    $('.customer__section--info').hide();
+    $('#found-customer').prepend(`<p>Customer Name: ${foundCustomer.name}</p><p>Customer ID: ${foundCustomer.id}</p>`);
   },
 
   showCustomerSearchBtn() {
@@ -85,6 +89,13 @@ export default {
     $('.customer__section--info').hide();
     $('#customer__no-customer').show();
     $('#customer__new-name').text($('#search-customers').val());
+  },
+
+  flashUserAlreadyExists() {
+    $('#customer-already-exists').show();
+    setTimeout(() => {
+      $('#customer-already-exists').hide();
+    }, 1000);
   },
 
   clearCustomerNameInput() {

@@ -65,6 +65,11 @@ a:hover {
   color: $orange;
 }
 
+button:hover {
+  background-color: $color4;
+  transform: scale(1.1);
+}
+
 .tab-active a {
   background: #fff;
   border-bottom-color: transparent;
@@ -91,7 +96,9 @@ a:hover {
 }
 
 #main-tab,
-#rooms-tab {
+#rooms-tab,
+#orders-tab,
+#customer-tab {
  margin-left: 10%;
 }
 
