@@ -41,8 +41,27 @@ describe('BookingRepo', function () {
     expect(bookingRepo.roomNumbers).to.eql([14, 24, 37]);
   })
 
-  it.skip('Should be able to set the rooms and users booked today', () => {
-    customer.unBookRoom();
-    expect(customer.room).to.equal(undefined);
+  it('Should be able to set the rooms and users booked today', () => {
+    bookingRepo.setRoomsAndCustomersBookedToday('2019/09/15');
+    expect(bookingRepo.bookedRoomNumbers).to.eql([24]);
+    expect(bookingRepo.bookedCustomerIDs).to.eql([2]);
+  })
+
+  it('Should filter available rooms by date', () => {
+    bookingRepo.setTotalRooms();
+    bookingRepo.setRoomsAndCustomersBookedToday('2019/09/15');
+    expect(bookingRepo.filterAvailableRoomsByDate('2019/09/15')).to.eql([14, 37]);
+  })
+
+  it('Should give the date the most rooms are available', () => {
+    bookingRepo.setTotalRooms();
+    bookingRepo.setRoomsAndCustomersBookedToday('2019/09/15');
+    expect(bookingRepo.dateMostRoomsAvailable()).to.eql(['2019/09/16']);
+  })
+
+  it('Should be able to look up the most popular days', () => {
+    bookingRepo.setTotalRooms();
+    bookingRepo.setRoomsAndCustomersBookedToday('2019/09/15');
+    expect(bookingRepo.mostPopularBookedDates()).to.eql(['2019/09/16', '2019/09/15', '2019/09/14']);
   })
 });
