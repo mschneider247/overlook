@@ -31,6 +31,10 @@ export default {
     $('#search-room-service-orders').html(``);
   },
 
+  grabSearchRoomsAvailable() {
+    return $('#search-rooms-available').val()
+  },
+
   clearRoomsAvailableSearch() {
     $('#search-rooms-available-by-date').html(``);
   },
